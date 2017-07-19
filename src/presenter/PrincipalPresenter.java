@@ -5,6 +5,8 @@
  */
 package presenter;
 
+import collection.Funcionarios;
+import collection.observer.IObservador;
 import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -14,18 +16,23 @@ import view.PrincipalView;
  *
  * @author joaopaulo
  */
-public class PrincipalPresenter {
+public class PrincipalPresenter implements IObservador {
 
     private final PrincipalView view;
+    private final Funcionarios collection;
 
-    public PrincipalPresenter() {
+    public PrincipalPresenter() throws Exception {
         view = new PrincipalView();
+
+        collection = Funcionarios.getInstance();
+        collection.addObserver(this);
+
         configurarTela();
+        atualizarContador();
 
         view.getMenuItemNovoFuncionario().addActionListener((ActionEvent e) -> {
-            ManterFuncionarioPresenter presenter;
             try {
-                presenter = new ManterFuncionarioPresenter("Inserir", null);
+                ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter("inserir", null);
                 view.getDesktop().add(presenter.getView());
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(view, ex.getMessage());
@@ -54,10 +61,24 @@ public class PrincipalPresenter {
         return view;
     }
 
+    @Override
+    public void update() {
+        try {
+            atualizarContador();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(view, ex.getMessage());
+        }
+    }
+
     private void configurarTela() {
         view.setTitle("Gestão de Funcionários");
         view.setLocationRelativeTo(null);
         view.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    private void atualizarContador() throws Exception {
+        String size = String.valueOf(collection.count());
+        view.getLabelTotal().setText(size);
     }
 
 }

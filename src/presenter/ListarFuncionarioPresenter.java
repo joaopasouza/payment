@@ -22,6 +22,7 @@ public class ListarFuncionarioPresenter implements IObservador {
     private final ListarFuncionarioView view;
     private final Funcionarios collection;
     private DefaultTableModel tableModel = null;
+    private Funcionario funcionario;
 
     public ListarFuncionarioPresenter() throws Exception {
         view = new ListarFuncionarioView();
@@ -31,7 +32,13 @@ public class ListarFuncionarioPresenter implements IObservador {
         collection.addObserver(this);
 
         view.getBtnVisualizar().addActionListener((ActionEvent e) -> {
-            //
+            try {
+                funcionario = selecionarFuncionario();
+                ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter("visualizar", funcionario);
+                view.getParent().add(presenter.getView());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(view, ex.getMessage());
+            }
         });
 
         view.getBtnFechar().addActionListener((ActionEvent e) -> {
@@ -70,6 +77,17 @@ public class ListarFuncionarioPresenter implements IObservador {
 
             tableModel.addRow(new Object[]{id, nome, cargo, salario});
         }
+    }
+
+    private Funcionario selecionarFuncionario() throws Exception {
+        if (view.getTableFuncionarios().getSelectedRow() == -1) {
+            throw new Exception("Selecione um funcionário!");
+        }
+
+        int line = view.getTableFuncionarios().getSelectedRow();
+        String index = (String) view.getTableFuncionarios().getValueAt(line, 0);
+
+        return collection.findByIndex(Integer.parseInt(index));
     }
 
 }

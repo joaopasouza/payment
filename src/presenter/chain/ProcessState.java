@@ -21,6 +21,7 @@ public class ProcessState {
     public ProcessState() {
         handlers = new ArrayList<>();
         handlers.add(new InserirHandler());
+        handlers.add(new VisualizarHandler());
     }
 
     public ManterFuncionarioState doProcess(String state, ManterFuncionarioPresenter presenter, Funcionario f) throws Exception {

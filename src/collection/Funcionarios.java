@@ -47,4 +47,12 @@ public class Funcionarios extends Sujeito {
         return dao.find();
     }
 
+    public Funcionario findByIndex(int index) throws Exception {
+        return (Funcionario) dao.findByIndex(index);
+    }
+
+    public int count() throws Exception {
+        return dao.count();
+    }
+
 }

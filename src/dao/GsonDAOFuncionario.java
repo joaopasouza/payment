@@ -88,6 +88,11 @@ public class GsonDAOFuncionario implements IDAO<Funcionario> {
         return null;
     }
 
+    @Override
+    public int count() throws Exception {
+        return funcionarios.size();
+    }
+
     private void writer() throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
 

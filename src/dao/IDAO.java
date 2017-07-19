@@ -24,4 +24,6 @@ public interface IDAO<T> {
 
     public T findByIndex(int index) throws Exception;
 
+    public int count() throws Exception;
+
 }
