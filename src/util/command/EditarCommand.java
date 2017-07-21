@@ -3,28 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presenter.command;
+package util.command;
 
-import bonus.strategy.BonusNormalStrategy;
 import collection.Funcionarios;
-import java.io.IOException;
-import javax.swing.JOptionPane;
-import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
-import presenter.state.InserirFuncionario;
 import validation.Validador;
 
 /**
  *
  * @author joaopaulo
  */
-public class InserirCommand implements ICommand {
+public class EditarCommand implements ICommand {
 
     private final Funcionarios collection;
     private final Validador validador;
-    private Funcionario funcionario;
 
-    public InserirCommand() throws IOException {
+    public EditarCommand() throws Exception {
         collection = Funcionarios.getInstance();
         validador = Validador.getInstance();
     }
@@ -44,26 +38,6 @@ public class InserirCommand implements ICommand {
         validador.setRegras("Faltas", faltas, new String[]{"Requerido", "Inteiro"});
         validador.setRegras("Região", regiao, new String[]{"Requerido"});
         validador.setRegras("Bônus", bonus, new String[]{"Requerido"});
-
-        double fieldSalario = Double.parseDouble(salario);
-        int FieldFaltas = Integer.parseInt(faltas);
-
-        funcionario = new Funcionario(nome, cargo, fieldSalario, FieldFaltas, regiao);
-        funcionario.setStrategy(new BonusNormalStrategy());
-        funcionario.calcularBonus();
-
-        if (collection.insert(funcionario)) {
-            JOptionPane.showMessageDialog(presenter.getView(), "Salvo com sucesso!");
-        } else {
-            throw new Exception("Erro ao inserir o funcionário!");
-        }
-
-        int opcao = JOptionPane.showConfirmDialog(presenter.getView(), "Deseja inserir outro funcionário?", "Inserção de Registros", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-        if (opcao == JOptionPane.OK_OPTION) {
-            presenter.setState(new InserirFuncionario(presenter));
-        } else {
-            presenter.getView().dispose();
-        }
     }
 
 }

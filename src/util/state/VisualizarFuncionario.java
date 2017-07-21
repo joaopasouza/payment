@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presenter.state;
+package util.state;
 
 import java.awt.event.ActionEvent;
-import java.io.IOException;
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
 
@@ -16,43 +15,39 @@ import presenter.ManterFuncionarioPresenter;
  */
 public class VisualizarFuncionario extends ManterFuncionarioState {
 
-    public VisualizarFuncionario(ManterFuncionarioPresenter presenter, Funcionario f) throws IOException {
-        super(presenter);
+    public VisualizarFuncionario(ManterFuncionarioPresenter presenter, Funcionario funcionario) {
+        super(presenter, funcionario);
 
-        configurarTela(f);
+        configurarTela();
 
         presenter.getView().getBtnEditar().addActionListener((ActionEvent e) -> {
-            //
-        });
-
-        presenter.getView().getBtnExcluir().addActionListener((ActionEvent e) -> {
-            //
+            editar();
         });
 
         presenter.getView().setVisible(true);
     }
 
     @Override
-    public void inserir() {
-        throw new RuntimeException("Não é possível salvar");
-    }
-
-    @Override
-    public void visualizar(Funcionario f) {
-        throw new RuntimeException("Não é possível visualizar");
-    }
-
-    @Override
-    public void atualizar(Funcionario f) {
+    public void salvar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void excluir(Funcionario f) {
+    public void cancelar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private void configurarTela(Funcionario f) {
+    @Override
+    public void editar() {
+        presenter.setState(new EditarFuncionario(presenter, funcionario));
+    }
+
+    @Override
+    public void excluir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void configurarTela() {
         presenter.getView().getBtnGerenciarBonus().setVisible(true);
         presenter.getView().getBtnEditar().setVisible(true);
         presenter.getView().getBtnExcluir().setVisible(true);
@@ -60,14 +55,15 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
         presenter.getView().getBtnEditar().setText("Editar");
         presenter.getView().getBtnSalvar().setEnabled(false);
         presenter.getView().getBtnExcluir().setEnabled(true);
+        presenter.getView().getBtnGerenciarBonus().setEnabled(false);
 
-        presenter.getView().getTextNome().setText(f.getNome());
-        presenter.getView().getBoxCargo().setSelectedItem(f.getCargo());
-        presenter.getView().getTextSalario().setText(String.valueOf(f.getSalario()));
-        presenter.getView().getTextFaltas().setText(String.valueOf(f.getFaltas()));
-        presenter.getView().getBoxRegiao().setSelectedItem(f.getRegiao());
+        presenter.getView().getTextNome().setText(funcionario.getNome());
+        presenter.getView().getBoxCargo().setSelectedItem(funcionario.getCargo());
+        presenter.getView().getTextSalario().setText(String.valueOf(funcionario.getSalario()));
+        presenter.getView().getTextFaltas().setText(String.valueOf(funcionario.getFaltas()));
+        presenter.getView().getBoxRegiao().setSelectedItem(funcionario.getRegiao());
 
-        String bonus = f.getBonus().get(0).getNome();
+        String bonus = funcionario.getBonus().get(0).getNome();
         presenter.getView().getBoxBonus().setSelectedItem(bonus);
 
         presenter.getView().getTextNome().setEnabled(false);

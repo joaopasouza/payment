@@ -43,6 +43,11 @@ public class Funcionarios extends Sujeito {
         return insert;
     }
 
+    public void update(int index, Funcionario f) throws Exception {
+        dao.update(index, f);
+        notifyObservers();
+    }
+
     public ArrayList<Funcionario> find() throws Exception {
         return dao.find();
     }

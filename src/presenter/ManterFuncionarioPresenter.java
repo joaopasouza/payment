@@ -6,8 +6,8 @@
 package presenter;
 
 import model.Funcionario;
-import presenter.chain.ProcessState;
-import presenter.state.ManterFuncionarioState;
+import util.chain.ProcessState;
+import util.state.ManterFuncionarioState;
 import view.ManterFuncionarioView;
 
 /**
@@ -19,11 +19,11 @@ public final class ManterFuncionarioPresenter {
     private final ManterFuncionarioView view;
     private ManterFuncionarioState state;
 
-    public ManterFuncionarioPresenter(String state, Funcionario f) throws Exception {
+    public ManterFuncionarioPresenter(String estado, Funcionario funcionario) throws Exception {
         view = new ManterFuncionarioView();
 
         ProcessState process = new ProcessState();
-        setState(process.doProcess(state, this, f));
+        setState(process.doProcess(estado, this, funcionario));
     }
 
     public ManterFuncionarioView getView() {

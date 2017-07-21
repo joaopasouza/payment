@@ -3,27 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presenter.chain;
+package util.chain;
 
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
-import presenter.state.ManterFuncionarioState;
-import presenter.state.VisualizarFuncionario;
+import util.state.InserirFuncionario;
+import util.state.ManterFuncionarioState;
 
 /**
  *
  * @author joaopaulo
  */
-public class VisualizarHandler implements IStateHandler {
+public class InserirHandler implements IStateHandler {
 
     @Override
     public boolean accept(String state) {
-        return state.equalsIgnoreCase("visualizar");
+        return state.equalsIgnoreCase("inserir");
     }
 
     @Override
     public ManterFuncionarioState doHandler(ManterFuncionarioPresenter presenter, Funcionario f) throws Exception {
-        return new VisualizarFuncionario(presenter, f);
+        return new InserirFuncionario(presenter, f);
     }
 
 }

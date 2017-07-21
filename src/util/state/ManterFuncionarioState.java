@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presenter.state;
+package util.state;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,24 +17,31 @@ import presenter.ManterFuncionarioPresenter;
 public abstract class ManterFuncionarioState {
 
     protected ManterFuncionarioPresenter presenter;
+    protected Funcionario funcionario;
 
-    public ManterFuncionarioState(ManterFuncionarioPresenter presenter) {
+    public ManterFuncionarioState(ManterFuncionarioPresenter presenter, Funcionario funcionario) {
         this.presenter = presenter;
+        this.funcionario = funcionario;
 
+        removerListerners();
         configurarTela();
+
+        preencherBoxCargo();
+        preencherBoxRegiao();
+        preencherBoxBonus();
 
         presenter.getView().getBtnFechar().addActionListener((ActionEvent e) -> {
             presenter.getView().dispose();
         });
     }
 
-    public abstract void inserir();
+    public abstract void salvar();
 
-    public abstract void visualizar(Funcionario f);
+    public abstract void cancelar();
 
-    public abstract void atualizar(Funcionario f);
+    public abstract void editar();
 
-    public abstract void excluir(Funcionario f);
+    public abstract void excluir();
 
     private void configurarTela() {
         presenter.getView().setTitle("Manter Funcionário");
@@ -47,7 +54,9 @@ public abstract class ManterFuncionarioState {
         presenter.getView().getBoxCargo().removeAllItems();
         presenter.getView().getBoxRegiao().removeAllItems();
         presenter.getView().getBoxBonus().removeAllItems();
+    }
 
+    private void removerListerners() {
         for (ActionListener al : presenter.getView().getBtnGerenciarBonus().getActionListeners()) {
             presenter.getView().getBtnGerenciarBonus().removeActionListener(al);
         }
@@ -67,10 +76,6 @@ public abstract class ManterFuncionarioState {
         for (ActionListener al : presenter.getView().getBtnFechar().getActionListeners()) {
             presenter.getView().getBtnFechar().removeActionListener(al);
         }
-
-        preencherBoxCargo();
-        preencherBoxRegiao();
-        preencherBoxBonus();
     }
 
     private void preencherBoxCargo() {

@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package presenter.chain;
+package util.chain;
 
 import java.util.ArrayList;
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
-import presenter.state.ManterFuncionarioState;
+import util.state.ManterFuncionarioState;
 
 /**
  *
