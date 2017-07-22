@@ -53,7 +53,7 @@ public class ListarFuncionarioView extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "Nome", "Cargo", "Salário"
+                "Nome", "Cargo", "Salário"
             }
         ));
         jScrollPane1.setViewportView(tableFuncionarios);

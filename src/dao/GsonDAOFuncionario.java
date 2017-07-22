@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
+import java.util.TreeSet;
 
 /**
  *
@@ -23,11 +23,11 @@ import java.util.ArrayList;
 public class GsonDAOFuncionario implements IDAO<Funcionario> {
 
     private final File file;
-    private ArrayList<Funcionario> funcionarios = null;
+    private TreeSet<Funcionario> funcionarios = null;
 
     public GsonDAOFuncionario(String filepath) throws UnsupportedEncodingException, IOException {
         if (funcionarios == null) {
-            funcionarios = new ArrayList<>();
+            funcionarios = new TreeSet<>();
         }
 
         file = new File(filepath);
@@ -50,8 +50,8 @@ public class GsonDAOFuncionario implements IDAO<Funcionario> {
     }
 
     @Override
-    public void update(int index, Funcionario entity) throws Exception {
-        Funcionario f = findByIndex(index);
+    public void update(String name, Funcionario entity) throws Exception {
+        Funcionario f = findByName(name);
         f.setNome(entity.getNome());
         f.setCargo(entity.getCargo());
         f.setSalario(entity.getSalario());
@@ -73,14 +73,14 @@ public class GsonDAOFuncionario implements IDAO<Funcionario> {
     }
 
     @Override
-    public ArrayList<Funcionario> find() throws Exception {
+    public TreeSet<Funcionario> find() throws Exception {
         return funcionarios;
     }
 
     @Override
-    public Funcionario findByIndex(int index) throws Exception {
+    public Funcionario findByName(String name) throws Exception {
         for (Funcionario funcionario : funcionarios) {
-            if (index == funcionarios.indexOf(funcionario)) {
+            if (funcionario.getNome().equalsIgnoreCase(name)) {
                 return funcionario;
             }
         }
@@ -98,7 +98,7 @@ public class GsonDAOFuncionario implements IDAO<Funcionario> {
 
         Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT).create();
 
-        Type type = new TypeToken<ArrayList<Funcionario>>() {
+        Type type = new TypeToken<TreeSet<Funcionario>>() {
         }.getType();
         String json = gson.toJson(funcionarios, type);
         bw.append(json);
@@ -110,7 +110,7 @@ public class GsonDAOFuncionario implements IDAO<Funcionario> {
         BufferedReader br = new BufferedReader(new FileReader(file));
         String line;
         Gson gson = new Gson();
-        Type type = new TypeToken<ArrayList<Funcionario>>() {
+        Type type = new TypeToken<TreeSet<Funcionario>>() {
         }.getType();
         while ((line = br.readLine()) != null) {
             funcionarios.addAll(gson.fromJson(line, type));

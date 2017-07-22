@@ -26,7 +26,7 @@ public class ListarFuncionarioPresenter implements IObservador {
 
     public ListarFuncionarioPresenter() throws Exception {
         view = new ListarFuncionarioView();
-        tableModel = new DefaultTableModel(new Object[]{"ID", "Nome", "Cargo", "Salário"}, 0);
+        tableModel = new DefaultTableModel(new Object[]{"Nome", "Cargo", "Salário"}, 0);
 
         collection = Funcionarios.getInstance();
         collection.addObserver(this);
@@ -70,12 +70,11 @@ public class ListarFuncionarioPresenter implements IObservador {
         tableModel.setNumRows(0);
 
         for (Funcionario f : collection.find()) {
-            String id = String.valueOf(collection.find().indexOf(f));
             String nome = f.getNome();
             String cargo = f.getCargo();
             String salario = String.valueOf(f.calcularSalario());
 
-            tableModel.addRow(new Object[]{id, nome, cargo, salario});
+            tableModel.addRow(new Object[]{nome, cargo, salario});
         }
     }
 
@@ -85,9 +84,9 @@ public class ListarFuncionarioPresenter implements IObservador {
         }
 
         int line = view.getTableFuncionarios().getSelectedRow();
-        String index = (String) view.getTableFuncionarios().getValueAt(line, 0);
+        String name = (String) view.getTableFuncionarios().getValueAt(line, 0);
 
-        return collection.findByIndex(Integer.parseInt(index));
+        return collection.findByName(name);
     }
 
 }

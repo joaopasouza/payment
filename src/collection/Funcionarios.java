@@ -9,7 +9,7 @@ import collection.observer.Sujeito;
 import dao.GsonDAOFuncionario;
 import dao.IDAO;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.TreeSet;
 import model.Funcionario;
 
 /**
@@ -43,17 +43,17 @@ public class Funcionarios extends Sujeito {
         return insert;
     }
 
-    public void update(int index, Funcionario f) throws Exception {
-        dao.update(index, f);
+    public void update(String name, Funcionario f) throws Exception {
+        dao.update(name, f);
         notifyObservers();
     }
 
-    public ArrayList<Funcionario> find() throws Exception {
+    public TreeSet<Funcionario> find() throws Exception {
         return dao.find();
     }
 
-    public Funcionario findByIndex(int index) throws Exception {
-        return (Funcionario) dao.findByIndex(index);
+    public Funcionario findByName(String name) throws Exception {
+        return (Funcionario) dao.findByName(name);
     }
 
     public int count() throws Exception {

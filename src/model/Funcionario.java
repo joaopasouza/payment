@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author joaopaulo
  */
-public class Funcionario {
+public class Funcionario implements Comparable<Funcionario> {
 
     private String nome;
     private String cargo;
@@ -94,6 +94,11 @@ public class Funcionario {
         }
 
         return valor + salario;
+    }
+
+    @Override
+    public int compareTo(Funcionario f) {
+        return nome.compareTo(f.getNome());
     }
 
 }
