@@ -14,7 +14,11 @@ import presenter.PrincipalPresenter;
 public class Main {
 
     public static void main(String[] args) {
-        PrincipalPresenter presenter = new PrincipalPresenter();
+        try {
+            PrincipalPresenter presenter = new PrincipalPresenter();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }
