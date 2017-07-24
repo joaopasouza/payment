@@ -5,7 +5,8 @@
  */
 package bonus.strategy;
 
-import cargo.chain.ProcessarCargo;
+import java.util.ArrayList;
+import model.Bonus;
 import model.Funcionario;
 
 /**
@@ -16,8 +17,21 @@ public class BonusNormalStrategy implements IBonusStrategy {
 
     @Override
     public void calcularBonus(Funcionario f) throws Exception {
-        ProcessarCargo pc = new ProcessarCargo();
-        pc.processar(f);
+        ArrayList<Bonus> bonus = new ArrayList<>();
+        switch (f.getCargo()) {
+            case "Gerente": {
+                bonus.add(new Bonus("Generoso", 200));
+                break;
+            }
+            case "Programador": {
+                bonus.add(new Bonus("Generoso", 100));
+                break;
+            }
+            case "Secretario": {
+                bonus.add(new Bonus("Generoso", 50));
+            }
+        }
+        f.setBonus(bonus);
     }
 
 }

@@ -6,7 +6,6 @@
 package cargo.chain;
 
 import java.util.ArrayList;
-import model.Funcionario;
 
 /**
  *
@@ -23,10 +22,10 @@ public class ProcessarCargo {
         cargos.add(new SecretarioHandler());
     }
 
-    public void processar(Funcionario f) {
-        for (ICargo cargo : cargos) {
-            if (cargo.aceitar(f.getCargo())) {
-                cargo.calcular(f);
+    public void processar(String cargo, String tipo) {
+        for (ICargo c : cargos) {
+            if (c.aceitar(cargo)) {
+                c.adicionar(tipo);
             }
         }
     }

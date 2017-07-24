@@ -5,8 +5,6 @@
  */
 package cargo.chain;
 
-import model.Funcionario;
-
 /**
  *
  * @author joaopaulo
@@ -15,6 +13,6 @@ public interface ICargo {
 
     public boolean aceitar(String cargo);
 
-    public void calcular(Funcionario f);
+    public void adicionar(String tipo);
 
 }

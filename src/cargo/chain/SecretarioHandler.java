@@ -5,8 +5,6 @@
  */
 package cargo.chain;
 
-import java.util.ArrayList;
-import model.Bonus;
 import model.Funcionario;
 
 /**
@@ -21,11 +19,8 @@ public class SecretarioHandler implements ICargo {
     }
 
     @Override
-    public void calcular(Funcionario f) {
-        ArrayList<Bonus> bonus = new ArrayList<>();
-        Bonus b = new Bonus("Normal", 100);
-        bonus.add(b);
-        f.setBonus(bonus);
+    public void adicionar(String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }

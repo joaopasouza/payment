@@ -75,12 +75,15 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
         presenter.getView().getBtnSalvar().setEnabled(false);
         presenter.getView().getBtnExcluir().setEnabled(true);
         presenter.getView().getBtnGerenciarBonus().setEnabled(false);
+        presenter.getView().getLabelTotal().setVisible(true);
+        presenter.getView().getLabelTotalSalario().setVisible(true);
 
         presenter.getView().getTextNome().setText(funcionario.getNome());
         presenter.getView().getBoxCargo().setSelectedItem(funcionario.getCargo());
         presenter.getView().getTextSalario().setText(String.valueOf(funcionario.getSalario()));
         presenter.getView().getTextFaltas().setText(String.valueOf(funcionario.getFaltas()));
         presenter.getView().getBoxRegiao().setSelectedItem(funcionario.getRegiao());
+        presenter.getView().getLabelTotalSalario().setText(String.valueOf(funcionario.calcularSalario()));
 
         String bonus = funcionario.getBonus().get(0).getNome();
         presenter.getView().getBoxBonus().setSelectedItem(bonus);

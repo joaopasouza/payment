@@ -6,6 +6,8 @@
 package util.state;
 
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
 import util.command.ICommand;
@@ -37,7 +39,11 @@ public class EditarFuncionario extends ManterFuncionarioState {
 
     @Override
     public void cancelar() {
-        presenter.setState(new VisualizarFuncionario(presenter, funcionario));
+        try {
+            presenter.setState(new VisualizarFuncionario(presenter, funcionario));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(presenter.getView(), ex.getMessage());
+        }
     }
 
     @Override
