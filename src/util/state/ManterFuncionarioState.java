@@ -87,10 +87,9 @@ public abstract class ManterFuncionarioState {
 
     private void preencherBoxRegiao() {
         presenter.getView().getBoxRegiao().addItem("");
-        presenter.getView().getBoxRegiao().addItem("ES");
-        presenter.getView().getBoxRegiao().addItem("MG");
-        presenter.getView().getBoxRegiao().addItem("RJ");
-        presenter.getView().getBoxRegiao().addItem("SP");
+        presenter.getView().getBoxRegiao().addItem("Brasil");
+        presenter.getView().getBoxRegiao().addItem("Siria");
+        presenter.getView().getBoxRegiao().addItem("Caribe");
     }
 
     private void preencherBoxBonus() {

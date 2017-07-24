@@ -48,6 +48,11 @@ public class Funcionarios extends Sujeito {
         notifyObservers();
     }
 
+    public void delete(Funcionario f) throws Exception {
+        dao.delete(f);
+        notifyObservers();
+    }
+
     public TreeSet<Funcionario> find() throws Exception {
         return dao.find();
     }

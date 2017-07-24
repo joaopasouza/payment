@@ -62,14 +62,9 @@ public class GsonDAOFuncionario implements IDAO<Funcionario> {
     }
 
     @Override
-    public boolean delete(Funcionario entity) throws Exception {
-        boolean delete = funcionarios.remove(entity);
-
-        if (delete) {
-            writer();
-        }
-
-        return delete;
+    public void delete(Funcionario entity) throws Exception {
+        funcionarios.remove(entity);
+        writer();
     }
 
     @Override

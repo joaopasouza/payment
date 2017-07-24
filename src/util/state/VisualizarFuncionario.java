@@ -5,7 +5,10 @@
  */
 package util.state;
 
+import collection.Funcionarios;
 import java.awt.event.ActionEvent;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
 
@@ -15,13 +18,21 @@ import presenter.ManterFuncionarioPresenter;
  */
 public class VisualizarFuncionario extends ManterFuncionarioState {
 
-    public VisualizarFuncionario(ManterFuncionarioPresenter presenter, Funcionario funcionario) {
+    private final Funcionarios collection;
+
+    public VisualizarFuncionario(ManterFuncionarioPresenter presenter, Funcionario funcionario) throws IOException {
         super(presenter, funcionario);
+
+        collection = Funcionarios.getInstance();
 
         configurarTela();
 
         presenter.getView().getBtnEditar().addActionListener((ActionEvent e) -> {
             editar();
+        });
+
+        presenter.getView().getBtnExcluir().addActionListener((ActionEvent e) -> {
+            excluir();
         });
 
         presenter.getView().setVisible(true);
@@ -44,7 +55,15 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
 
     @Override
     public void excluir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            int opcao = JOptionPane.showConfirmDialog(presenter.getView(), "Confirma a exclusão deste Funcionário?", "Exclusão de Registros", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (opcao == JOptionPane.OK_OPTION) {
+                collection.delete(funcionario);
+                presenter.getView().dispose();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(presenter.getView(), e.getMessage());
+        }
     }
 
     private void configurarTela() {

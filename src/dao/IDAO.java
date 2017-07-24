@@ -18,7 +18,7 @@ public interface IDAO<T> {
 
     public void update(String name, T entity) throws Exception;
 
-    public boolean delete(T entity) throws Exception;
+    public void delete(T entity) throws Exception;
 
     public TreeSet<T> find() throws Exception;
 
