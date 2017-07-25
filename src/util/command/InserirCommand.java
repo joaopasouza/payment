@@ -5,7 +5,9 @@
  */
 package util.command;
 
+import bonus.strategy.BonusGenerosoStrategy;
 import bonus.strategy.BonusNormalStrategy;
+import bonus.strategy.IBonusStrategy;
 import collection.Funcionarios;
 import java.io.IOException;
 import javax.swing.JOptionPane;
@@ -49,7 +51,7 @@ public class InserirCommand implements ICommand {
         int FieldFaltas = Integer.parseInt(faltas);
 
         funcionario = new Funcionario(nome, cargo, fieldSalario, FieldFaltas, regiao);
-        funcionario.setStrategy(new BonusNormalStrategy());
+        funcionario.setStrategy(calcularBonus(bonus));
         funcionario.calcularBonus();
 
         if (collection.insert(funcionario)) {
@@ -63,6 +65,14 @@ public class InserirCommand implements ICommand {
             presenter.setState(new InserirFuncionario(presenter, null));
         } else {
             presenter.getView().dispose();
+        }
+    }
+
+    private IBonusStrategy calcularBonus(String tipo) {
+        if (tipo.equalsIgnoreCase("Normal")) {
+            return new BonusNormalStrategy();
+        } else {
+            return new BonusGenerosoStrategy();
         }
     }
 

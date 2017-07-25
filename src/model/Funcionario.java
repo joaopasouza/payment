@@ -6,7 +6,7 @@
 package model;
 
 import bonus.strategy.IBonusStrategy;
-import java.util.ArrayList;
+import java.util.Map;
 
 /**
  *
@@ -19,7 +19,7 @@ public class Funcionario implements Comparable<Funcionario> {
     private double salario;
     private int faltas;
     private String regiao;
-    private ArrayList<Bonus> bonus;
+    private Map<String, Double> bonus;
     private transient IBonusStrategy strategy;
 
     public Funcionario(String nome, String cargo, double salario, int faltas, String regiao) {
@@ -50,7 +50,7 @@ public class Funcionario implements Comparable<Funcionario> {
         return regiao;
     }
 
-    public ArrayList<Bonus> getBonus() {
+    public Map<String, Double> getBonus() {
         return bonus;
     }
 
@@ -74,7 +74,7 @@ public class Funcionario implements Comparable<Funcionario> {
         this.regiao = regiao;
     }
 
-    public void setBonus(ArrayList<Bonus> bonus) {
+    public void setBonus(Map<String, Double> bonus) {
         this.bonus = bonus;
     }
 
@@ -87,13 +87,14 @@ public class Funcionario implements Comparable<Funcionario> {
     }
 
     public double calcularSalario() {
-        double valor = 0;
+        double value = 0;
 
-        for (Bonus b : bonus) {
-            valor += b.getValor();
+        for (Map.Entry<String, Double> entry : bonus.entrySet()) {
+            value += entry.getValue();
+
         }
 
-        return valor + salario;
+        return value + salario;
     }
 
     @Override

@@ -5,8 +5,6 @@
  */
 package cargo.chain;
 
-import model.Funcionario;
-
 /**
  *
  * @author joaopaulo

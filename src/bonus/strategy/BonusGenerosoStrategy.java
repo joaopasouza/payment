@@ -5,8 +5,8 @@
  */
 package bonus.strategy;
 
-import java.util.ArrayList;
-import model.Bonus;
+import java.util.HashMap;
+import java.util.Map;
 import model.Funcionario;
 
 /**
@@ -17,18 +17,18 @@ public class BonusGenerosoStrategy implements IBonusStrategy {
 
     @Override
     public void calcularBonus(Funcionario f) throws Exception {
-        ArrayList<Bonus> bonus = new ArrayList<>();
+        Map<String, Double> bonus = new HashMap<>();
         switch (f.getCargo()) {
             case "Gerente": {
-                bonus.add(new Bonus("Generoso", 500));
+                bonus.put("Generoso", 200.00);
                 break;
             }
             case "Programador": {
-                bonus.add(new Bonus("Generoso", 250));
+                bonus.put("Generoso", 100.00);
                 break;
             }
             case "Secretario": {
-                bonus.add(new Bonus("Generoso", 100));
+                bonus.put("Generoso", 50.00);
             }
         }
         f.setBonus(bonus);

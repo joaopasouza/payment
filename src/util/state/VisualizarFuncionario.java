@@ -8,6 +8,7 @@ package util.state;
 import collection.Funcionarios;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
@@ -78,15 +79,23 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
         presenter.getView().getLabelTotal().setVisible(true);
         presenter.getView().getLabelTotalSalario().setVisible(true);
 
+        String bonus = "";
+        for (Map.Entry<String, Double> entry : funcionario.getBonus().entrySet()) {
+            String key = entry.getKey();
+            if (key.equalsIgnoreCase("Normal")) {
+                bonus = key;
+            } else if (key.equalsIgnoreCase("Generoso")) {
+                bonus = key;
+            }
+        }
+
+        presenter.getView().getBoxBonus().setSelectedItem(bonus);
         presenter.getView().getTextNome().setText(funcionario.getNome());
         presenter.getView().getBoxCargo().setSelectedItem(funcionario.getCargo());
         presenter.getView().getTextSalario().setText(String.valueOf(funcionario.getSalario()));
         presenter.getView().getTextFaltas().setText(String.valueOf(funcionario.getFaltas()));
         presenter.getView().getBoxRegiao().setSelectedItem(funcionario.getRegiao());
         presenter.getView().getLabelTotalSalario().setText(String.valueOf(funcionario.calcularSalario()));
-
-        String bonus = funcionario.getBonus().get(0).getNome();
-        presenter.getView().getBoxBonus().setSelectedItem(bonus);
 
         presenter.getView().getTextNome().setEnabled(false);
         presenter.getView().getBoxCargo().setEnabled(false);

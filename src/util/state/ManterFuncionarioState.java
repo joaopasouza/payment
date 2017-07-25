@@ -80,7 +80,7 @@ public abstract class ManterFuncionarioState {
 
     private void preencherBoxCargo() {
         presenter.getView().getBoxCargo().addItem("");
-        presenter.getView().getBoxCargo().addItem("Secretário");
+        presenter.getView().getBoxCargo().addItem("Secretario");
         presenter.getView().getBoxCargo().addItem("Programador");
         presenter.getView().getBoxCargo().addItem("Gerente");
     }

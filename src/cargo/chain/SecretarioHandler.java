@@ -15,7 +15,7 @@ public class SecretarioHandler implements ICargo {
 
     @Override
     public boolean aceitar(String cargo) {
-        return cargo.equalsIgnoreCase("Secretário");
+        return cargo.equalsIgnoreCase("Secretario");
     }
 
     @Override
