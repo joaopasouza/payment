@@ -1,1 +1,1 @@
-[{"nome":"João Paulo","cargo":"Programador","salario":45000.0,"faltas":1,"regiao":"Brasil","bonus":{"Generoso":100.0}},{"nome":"Patrícia","cargo":"Gerente","salario":7600.0,"faltas":1,"regiao":"Caribe","bonus":{"Generoso":200.0}}]
+[{"nome":"João Paulo","cargo":"Programador","salario":4500.0,"faltas":1,"regiao":"Brasil","bonus":{"Generoso":100.0}},{"nome":"Manel","cargo":"Gerente","salario":5600.0,"faltas":10,"regiao":"Siria","bonus":{"Generoso":200.0}},{"nome":"Patrícia","cargo":"Gerente","salario":7600.0,"faltas":1,"regiao":"Caribe","bonus":{"Normal":100.0}}]

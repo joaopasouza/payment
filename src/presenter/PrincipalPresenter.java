@@ -50,6 +50,16 @@ public class PrincipalPresenter implements IObservador {
 
         });
 
+        view.getMenuItemGraficoSalario().addActionListener((ActionEvent e) -> {
+            try {
+                GraficoPresenter presenter = new GraficoPresenter();
+                view.getDesktop().add(presenter.getView());
+            } catch (Exception ex) {
+                JOptionPane.showConfirmDialog(view, ex.getMessage());
+            }
+
+        });
+
         view.getMenuItemSair().addActionListener((ActionEvent e) -> {
             System.exit(0);
         });

@@ -7,6 +7,7 @@ package view;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 /**
@@ -40,6 +41,7 @@ public class PrincipalView extends javax.swing.JFrame {
         menuListarFuncionario = new javax.swing.JMenuItem();
         menuItemSair = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        menuItemGraficoSalario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +74,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Gráficos");
+
+        menuItemGraficoSalario.setText("Gráfico Salários");
+        jMenu2.add(menuItemGraficoSalario);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -113,6 +119,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelTotal;
+    private javax.swing.JMenuItem menuItemGraficoSalario;
     private javax.swing.JMenuItem menuItemNovoFuncionario;
     private javax.swing.JMenuItem menuItemSair;
     private javax.swing.JMenuItem menuListarFuncionario;
@@ -136,6 +143,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
     public JMenuItem getMenuListarFuncionario() {
         return menuListarFuncionario;
+    }
+
+    public JMenuItem getMenuItemGraficoSalario() {
+        return menuItemGraficoSalario;
     }
 
 }

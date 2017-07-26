@@ -51,7 +51,11 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
 
     @Override
     public void editar() {
-        presenter.setState(new EditarFuncionario(presenter, funcionario));
+        try {
+            presenter.setState(new EditarFuncionario(presenter, funcionario));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(presenter.getView(), ex.getMessage());
+        }
     }
 
     @Override

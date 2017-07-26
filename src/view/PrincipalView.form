@@ -30,6 +30,13 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Gr&#xe1;ficos"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemGraficoSalario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Gr&#xe1;fico Sal&#xe1;rios"/>
+              </Properties>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
