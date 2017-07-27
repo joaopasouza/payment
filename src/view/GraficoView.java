@@ -34,7 +34,7 @@ public class GraficoView extends javax.swing.JInternalFrame {
         btnFechar = new javax.swing.JButton();
         btnConfigurar = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1024, 640));
+        setPreferredSize(new java.awt.Dimension(1024, 600));
 
         painel.setLayout(new java.awt.BorderLayout());
 

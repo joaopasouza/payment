@@ -51,8 +51,6 @@ public class ManterFuncionarioView extends javax.swing.JInternalFrame {
         btnFechar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        labelTotal = new javax.swing.JLabel();
-        labelTotalSalario = new javax.swing.JLabel();
 
         btnGerenciarBonus.setText("Gerenciar Bônus");
 
@@ -79,11 +77,6 @@ public class ManterFuncionarioView extends javax.swing.JInternalFrame {
         btnSalvar.setText("Salvar");
 
         btnExcluir.setText("Excluir");
-
-        labelTotal.setText("Total Salário:");
-
-        labelTotalSalario.setFont(new java.awt.Font("DejaVu Sans", 1, 12)); // NOI18N
-        labelTotalSalario.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,12 +116,6 @@ public class ManterFuncionarioView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEditar)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelTotal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelTotalSalario)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, labelBonus});
@@ -170,11 +157,7 @@ public class ManterFuncionarioView extends javax.swing.JInternalFrame {
                     .addComponent(boxBonus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTotal)
-                    .addComponent(labelTotalSalario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFechar)
                     .addComponent(btnSalvar)
@@ -205,8 +188,6 @@ public class ManterFuncionarioView extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelBonus;
-    private javax.swing.JLabel labelTotal;
-    private javax.swing.JLabel labelTotalSalario;
     private javax.swing.JTextField textFaltas;
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textSalario;
@@ -258,14 +239,6 @@ public class ManterFuncionarioView extends javax.swing.JInternalFrame {
 
     public JLabel getLabelBonus() {
         return labelBonus;
-    }
-
-    public JLabel getLabelTotal() {
-        return labelTotal;
-    }
-
-    public JLabel getLabelTotalSalario() {
-        return labelTotalSalario;
     }
 
 }

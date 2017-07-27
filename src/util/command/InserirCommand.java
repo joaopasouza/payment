@@ -5,8 +5,8 @@
  */
 package util.command;
 
-import bonus.strategy.BonusGenerosoStrategy;
-import bonus.strategy.BonusNormalStrategy;
+import bonus.chain.ProcessadorBonus;
+import bonus.regiao.ProcessadorRegiao;
 import bonus.strategy.IBonusStrategy;
 import collection.Funcionarios;
 import java.io.IOException;
@@ -54,6 +54,17 @@ public class InserirCommand implements ICommand {
         funcionario.setStrategy(calcularBonus(bonus));
         funcionario.calcularBonus();
 
+        ProcessadorRegiao p = new ProcessadorRegiao();
+        p.calcular(funcionario);
+
+        if (FieldFaltas == 0) {
+            funcionario.getBonus().put("Assiduidade", funcionario.getSalario() * 0.05);
+        } else if (FieldFaltas > 0 && FieldFaltas <= 5) {
+            funcionario.getBonus().put("Assiduidade", funcionario.getSalario() * 0.02);
+        } else {
+            funcionario.getBonus().put("Assiduidade", 0.00);
+        }
+
         if (collection.insert(funcionario)) {
             JOptionPane.showMessageDialog(presenter.getView(), "Salvo com sucesso!");
         } else {
@@ -68,12 +79,9 @@ public class InserirCommand implements ICommand {
         }
     }
 
-    private IBonusStrategy calcularBonus(String tipo) {
-        if (tipo.equalsIgnoreCase("Normal")) {
-            return new BonusNormalStrategy();
-        } else {
-            return new BonusGenerosoStrategy();
-        }
+    private IBonusStrategy calcularBonus(String tipo) throws Exception {
+        ProcessadorBonus processador = new ProcessadorBonus();
+        return processador.calcular(tipo);
     }
 
 }

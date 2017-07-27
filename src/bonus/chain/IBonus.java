@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bonus.strategy;
+package bonus.chain;
 
-import model.Funcionario;
+import bonus.strategy.IBonusStrategy;
 
 /**
  *
  * @author joaopaulo
  */
-public interface IBonusStrategy {
+public interface IBonus {
 
-    public void calcularBonus(Funcionario funcionario) throws Exception;
+    public boolean aceitar(String bonus);
+
+    public IBonusStrategy tratar() throws Exception;
 
 }
