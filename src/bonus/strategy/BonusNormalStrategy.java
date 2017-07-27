@@ -16,9 +16,9 @@ import model.Funcionario;
 public class BonusNormalStrategy implements IBonusStrategy {
 
     @Override
-    public void calcularBonus(Funcionario f) throws Exception {
+    public void calcularBonus(Funcionario funcionario) throws Exception {
         Map<String, Double> bonus = new HashMap<>();
-        switch (f.getCargo()) {
+        switch (funcionario.getCargo()) {
             case "Gerente": {
                 bonus.put("Normal", 100.00);
                 break;
@@ -31,7 +31,7 @@ public class BonusNormalStrategy implements IBonusStrategy {
                 bonus.put("Normal", 25.00);
             }
         }
-        f.setBonus(bonus);
+        funcionario.setBonus(bonus);
     }
 
 }

@@ -10,7 +10,8 @@ import collection.observer.IObservador;
 import grafico.GraficoPadrao;
 import grafico.builder.GraficoDirector;
 import java.awt.event.ActionEvent;
-import javax.swing.JOptionPane;
+import java.util.TreeSet;
+import model.Funcionario;
 import org.jfree.chart.ChartPanel;
 import view.GraficoView;
 
@@ -22,15 +23,18 @@ public class GraficoPresenter implements IObservador {
 
     private final GraficoView view;
     private final Funcionarios collection;
+    private final TreeSet<Funcionario> funcionarios;
 
     public GraficoPresenter() throws Exception {
         view = new GraficoView();
         view.setTitle("Gráfico - Salários por Região");
         view.setClosable(true);
-        view.setSize(1024, 640);
+        view.setSize(1024, 600);
 
         collection = Funcionarios.getInstance();
         collection.addObserver(this);
+
+        this.funcionarios = collection.find();
 
         view.getBtnFechar().addActionListener((ActionEvent e) -> {
             view.dispose();
@@ -45,8 +49,8 @@ public class GraficoPresenter implements IObservador {
         return view;
     }
 
-    private void plotar() throws Exception {
-        GraficoDirector director = new GraficoDirector(new GraficoPadrao());
+    private void plotar() {
+        GraficoDirector director = new GraficoDirector(new GraficoPadrao(funcionarios));
         ChartPanel grafico = director.construir();
         grafico.setSize(view.getPainel().getWidth(), view.getPainel().getHeight());
         grafico.setVisible(true);
@@ -56,11 +60,8 @@ public class GraficoPresenter implements IObservador {
 
     @Override
     public void update() {
-        try {
-            plotar();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(view, ex.getMessage());
-        }
+        view.getPainel().removeAll();
+        plotar();
     }
 
 }

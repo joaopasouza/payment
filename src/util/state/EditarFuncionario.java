@@ -5,6 +5,7 @@
  */
 package util.state;
 
+import bonus.regiao.ProcessadorRegiao;
 import bonus.strategy.BonusGenerosoStrategy;
 import bonus.strategy.BonusNormalStrategy;
 import bonus.strategy.IBonusStrategy;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.util.Map;
 import javax.swing.JOptionPane;
 import model.Funcionario;
+import presenter.GerenciarBonusPresenter;
 import presenter.ManterFuncionarioPresenter;
 import validation.Validador;
 
@@ -40,6 +42,14 @@ public class EditarFuncionario extends ManterFuncionarioState {
 
         presenter.getView().getBtnSalvar().addActionListener((ActionEvent e) -> {
             salvar();
+        });
+
+        presenter.getView().getBtnGerenciarBonus().addActionListener((ActionEvent e) -> {
+            try {
+                GerenciarBonusPresenter bonusPresenter = new GerenciarBonusPresenter(funcionario);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(presenter.getView(), ex.getMessage());
+            }
         });
 
         presenter.getView().setVisible(true);
@@ -72,6 +82,17 @@ public class EditarFuncionario extends ManterFuncionarioState {
             funcionario.setRegiao(regiao);
             funcionario.setStrategy(calcularBonus(bonus));
             funcionario.calcularBonus();
+
+            ProcessadorRegiao p = new ProcessadorRegiao();
+            p.calcular(funcionario);
+
+            if (FieldFaltas == 0) {
+                funcionario.getBonus().put("Assiduidade", funcionario.getSalario() * 0.05);
+            } else if (FieldFaltas > 0 && FieldFaltas <= 5) {
+                funcionario.getBonus().put("Assiduidade", funcionario.getSalario() * 0.02);
+            } else {
+                funcionario.getBonus().put("Assiduidade", 0.00);
+            }
 
             collection.update(nome, funcionario);
             JOptionPane.showMessageDialog(presenter.getView(), "Salvo com sucesso!");

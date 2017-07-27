@@ -80,8 +80,6 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
         presenter.getView().getBtnSalvar().setEnabled(false);
         presenter.getView().getBtnExcluir().setEnabled(true);
         presenter.getView().getBtnGerenciarBonus().setEnabled(false);
-        presenter.getView().getLabelTotal().setVisible(true);
-        presenter.getView().getLabelTotalSalario().setVisible(true);
 
         String bonus = "";
         for (Map.Entry<String, Double> entry : funcionario.getBonus().entrySet()) {
@@ -99,7 +97,6 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
         presenter.getView().getTextSalario().setText(String.valueOf(funcionario.getSalario()));
         presenter.getView().getTextFaltas().setText(String.valueOf(funcionario.getFaltas()));
         presenter.getView().getBoxRegiao().setSelectedItem(funcionario.getRegiao());
-        presenter.getView().getLabelTotalSalario().setText(String.valueOf(funcionario.calcularSalario()));
 
         presenter.getView().getTextNome().setEnabled(false);
         presenter.getView().getBoxCargo().setEnabled(false);

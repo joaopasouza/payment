@@ -5,7 +5,6 @@
  */
 package grafico;
 
-import collection.Funcionarios;
 import grafico.builder.GraficoBuilder;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +23,11 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class GraficoPadrao extends GraficoBuilder {
 
     private final Map<String, Double> salarios;
-    private final Funcionarios collection;
+    private final TreeSet<Funcionario> funcionarios;
 
-    public GraficoPadrao() throws Exception {
+    public GraficoPadrao(TreeSet<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
         salarios = new HashMap<>();
-        collection = Funcionarios.getInstance();
 
         carregarDados();
     }
@@ -39,7 +38,6 @@ public class GraficoPadrao extends GraficoBuilder {
         for (Map.Entry<String, Double> entry : salarios.entrySet()) {
             dataset.addValue(entry.getValue(), "Região", entry.getKey());
         }
-
         return dataset;
     }
 
@@ -53,12 +51,11 @@ public class GraficoPadrao extends GraficoBuilder {
         this.painel = new ChartPanel(this.grafico);
     }
 
-    private void carregarDados() throws Exception {
+    private void carregarDados() {
         double salariosBrasil = 0;
         double salariosSiria = 0;
         double salariosCaribe = 0;
 
-        TreeSet<Funcionario> funcionarios = collection.find();
         for (Funcionario f : funcionarios) {
             if (f.getRegiao().equalsIgnoreCase("Brasil")) {
                 salariosBrasil += f.getSalario();
