@@ -32,15 +32,12 @@ public class GraficoView extends javax.swing.JInternalFrame {
 
         painel = new javax.swing.JPanel();
         btnFechar = new javax.swing.JButton();
-        btnConfigurar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1024, 600));
 
         painel.setLayout(new java.awt.BorderLayout());
 
         btnFechar.setText("Fechar");
-
-        btnConfigurar.setText("Configurar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,23 +48,17 @@ public class GraficoView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnConfigurar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                        .addGap(0, 929, Short.MAX_VALUE)
                         .addComponent(btnFechar)))
                 .addContainerGap())
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnConfigurar, btnFechar});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painel, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFechar)
-                    .addComponent(btnConfigurar))
+                .addComponent(btnFechar)
                 .addContainerGap())
         );
 
@@ -76,14 +67,9 @@ public class GraficoView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfigurar;
     private javax.swing.JButton btnFechar;
     private javax.swing.JPanel painel;
     // End of variables declaration//GEN-END:variables
-
-    public JButton getBtnConfigurar() {
-        return btnConfigurar;
-    }
 
     public JButton getBtnFechar() {
         return btnFechar;

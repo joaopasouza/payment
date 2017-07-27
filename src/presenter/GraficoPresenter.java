@@ -55,6 +55,7 @@ public class GraficoPresenter implements IObservador {
         grafico.setSize(view.getPainel().getWidth(), view.getPainel().getHeight());
         grafico.setVisible(true);
         view.getPainel().add(grafico);
+        view.getPainel().repaint();
         view.getPainel().validate();
     }
 

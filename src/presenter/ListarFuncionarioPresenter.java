@@ -36,6 +36,7 @@ public class ListarFuncionarioPresenter implements IObservador {
                 funcionario = selecionarFuncionario();
                 ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter("visualizar", funcionario);
                 view.getParent().add(presenter.getView());
+                presenter.getView().setSelected(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(view, ex.getMessage());
             }

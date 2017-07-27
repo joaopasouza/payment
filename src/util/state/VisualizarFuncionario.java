@@ -7,8 +7,11 @@ package util.state;
 
 import collection.Funcionarios;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Funcionario;
 import presenter.ManterFuncionarioPresenter;
@@ -53,7 +56,8 @@ public class VisualizarFuncionario extends ManterFuncionarioState {
     public void editar() {
         try {
             presenter.setState(new EditarFuncionario(presenter, funcionario));
-        } catch (IOException ex) {
+            presenter.getView().setSelected(true);
+        } catch (IOException | PropertyVetoException ex) {
             JOptionPane.showMessageDialog(presenter.getView(), ex.getMessage());
         }
     }

@@ -28,10 +28,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="painel" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="btnConfigurar" linkSize="1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="196" max="32767" attributes="0"/>
-                      <Component id="btnFechar" linkSize="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="0" pref="929" max="32767" attributes="0"/>
+                      <Component id="btnFechar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -42,12 +41,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="painel" max="32767" attributes="0"/>
+              <Component id="painel" pref="512" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnFechar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnConfigurar" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btnFechar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -61,11 +57,6 @@
     <Component class="javax.swing.JButton" name="btnFechar">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fechar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnConfigurar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Configurar"/>
       </Properties>
     </Component>
   </SubComponents>

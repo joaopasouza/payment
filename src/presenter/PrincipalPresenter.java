@@ -34,6 +34,7 @@ public class PrincipalPresenter implements IObservador {
             try {
                 ManterFuncionarioPresenter presenter = new ManterFuncionarioPresenter("inserir", null);
                 view.getDesktop().add(presenter.getView());
+                presenter.getView().setSelected(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(view, ex.getMessage());
             }
@@ -44,16 +45,17 @@ public class PrincipalPresenter implements IObservador {
             try {
                 presenter = new ListarFuncionarioPresenter();
                 view.getDesktop().add(presenter.getView());
+                presenter.getView().setSelected(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(view, ex.getMessage());
             }
-
         });
 
         view.getMenuItemGraficoSalario().addActionListener((ActionEvent e) -> {
             try {
                 GraficoPresenter presenter = new GraficoPresenter();
                 view.getDesktop().add(presenter.getView());
+                presenter.getView().setSelected(true);
             } catch (Exception ex) {
                 JOptionPane.showConfirmDialog(view, ex.getMessage());
             }
